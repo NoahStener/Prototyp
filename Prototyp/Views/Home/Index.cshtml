@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-2 bg-light sidebar" style="padding: 20px;">
+            <h4>Menu</h4>
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Utbildning</option>
+                    <option value="1">Systemutvecklare.NET</option>
+                    <option value="2">Medicinsk Sekreterare</option>
+                    <option value="3">IT Projektledare</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Termin</option>
+                    <option value="1">2024</option>
+                    <option value="2">2023</option>
+                    <option value="3">2022</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-10">
+            <div class="row">
+                <!-- Pie Charts -->
+                <div class="col-md-4">
+                    <canvas id="pieChart1"></canvas>
+                </div>
+                <div class="col-md-4">
+                    <canvas id="pieChart2"></canvas>
+                </div>
+                <div class="col-md-4">
+                    <canvas id="pieChart3"></canvas>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <!-- Graph -->
+                <div class="col-md-12">
+                    <canvas id="lineGraph"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Pie Chart 1
+        var ctx1 = document.getElementById('pieChart1').getContext('2d');
+        var pieChart1 = new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow'],
+                datasets: [{
+                    data: [10, 20, 30],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                }]
+            }
+        });
+
+        // Pie Chart 2
+        var ctx2 = document.getElementById('pieChart2').getContext('2d');
+        var pieChart2 = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Green', 'Purple', 'Orange'],
+                datasets: [{
+                    data: [15, 25, 35],
+                    backgroundColor: ['#4BC0C0', '#9966FF', '#FF9F40']
+                }]
+            }
+        });
+
+        // Pie Chart 3
+        var ctx3 = document.getElementById('pieChart3').getContext('2d');
+        var pieChart3 = new Chart(ctx3, {
+            type: 'pie',
+            data: {
+                labels: ['Pink', 'Cyan', 'Magenta'],
+                datasets: [{
+                    data: [5, 10, 15],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+                }]
+            }
+        });
+
+        // Line Graph
+        var ctx4 = document.getElementById('lineGraph').getContext('2d');
+        var lineGraph = new Chart(ctx4, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgba(75,192,192,0.4)',
+                    borderColor: 'rgba(75,192,192,1)',
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                }]
+            }
+        });
+    </script>
+}
+
+
+
+
