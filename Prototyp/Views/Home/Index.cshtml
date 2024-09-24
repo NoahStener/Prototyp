@@ -5,23 +5,78 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <div class="col-md-2 bg-light sidebar" style="padding: 20px;">
+        <div class="col-md-2 bg-light sidebar" style="padding: 20px 5px;">
             <h4>Menu</h4>
             <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Utbildning</option>
-                    <option value="1">Systemutvecklare.NET</option>
-                    <option value="2">Medicinsk Sekreterare</option>
-                    <option value="3">IT Projektledare</option>
-                </select>
+                <label>Utbildning</label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Utbildning
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="utbildning1">
+                                <label class="form-check-label" for="utbildning1">
+                                    Systemutvecklare.NET
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="2" id="utbildning2">
+                                <label class="form-check-label" for="utbildning2">
+                                    Medicinsk Sekreterare
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="3" id="utbildning3">
+                                <label class="form-check-label" for="utbildning3">
+                                    IT Projektledare
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="mb-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Termin</option>
-                    <option value="1">2024</option>
-                    <option value="2">2023</option>
-                    <option value="3">2022</option>
-                </select>
+                <label>Termin</label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Termin
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="termin1">
+                                <label class="form-check-label" for="termin1">
+                                    2024
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="2" id="termin2">
+                                <label class="form-check-label" for="termin2">
+                                    2023
+                                </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="3" id="termin3">
+                                <label class="form-check-label" for="termin3">
+                                    2022
+                                </label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="button" id="generateDataButton">Generate Data</button>
             </div>
         </div>
 
@@ -40,9 +95,9 @@
                 </div>
             </div>
             <div class="row mt-4">
-                <!-- Graph -->
+                <!-- Bar Graph -->
                 <div class="col-md-12">
-                    <canvas id="lineGraph"></canvas>
+                    <canvas id="barGraph"></canvas>
                 </div>
             </div>
         </div>
@@ -57,9 +112,9 @@
         var pieChart1 = new Chart(ctx1, {
             type: 'pie',
             data: {
-                labels: ['Red', 'Blue', 'Yellow'],
+                labels: ['Female', 'Male'],
                 datasets: [{
-                    data: [10, 20, 30],
+                    data: [20, 30],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
                 }]
             }
@@ -70,7 +125,7 @@
         var pieChart2 = new Chart(ctx2, {
             type: 'pie',
             data: {
-                labels: ['Green', 'Purple', 'Orange'],
+                labels: ['Tackat ja', 'Tackat nej', 'Erbjuden plats'],
                 datasets: [{
                     data: [15, 25, 35],
                     backgroundColor: ['#4BC0C0', '#9966FF', '#FF9F40']
@@ -83,7 +138,7 @@
         var pieChart3 = new Chart(ctx3, {
             type: 'pie',
             data: {
-                labels: ['Pink', 'Cyan', 'Magenta'],
+                labels: ['Reell Kompetens', 'Ej Behörig', 'Behörig'],
                 datasets: [{
                     data: [5, 10, 15],
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
@@ -91,22 +146,36 @@
             }
         });
 
-        // Line Graph
-        var ctx4 = document.getElementById('lineGraph').getContext('2d');
-        var lineGraph = new Chart(ctx4, {
-            type: 'line',
+        // Bar Graph for Age Distribution
+        var ctx4 = document.getElementById('barGraph').getContext('2d');
+        var barGraph = new Chart(ctx4, {
+            type: 'bar',
             data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: ['20-24', '25-28', '29-32', '33-36', '37-40', '41-44', '45-48', '49-52', '53-56', '57-60'],
                 datasets: [{
-                    label: 'My First dataset',
+                    label: 'Age Distribution',
                     backgroundColor: 'rgba(75,192,192,0.4)',
                     borderColor: 'rgba(75,192,192,1)',
-                    data: [65, 59, 80, 81, 56, 55, 40]
+                    data: [12, 19, 3, 5, 2, 3, 7, 8, 6, 4]
                 }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
+        });
+
+        // Event listener for Generate Data button
+        document.getElementById('generateDataButton').addEventListener('click', function () {
+            // Add your data generation logic here
+            alert('Generate Data button clicked!');
         });
     </script>
 }
+
 
 
 
